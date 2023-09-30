@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Todo App</title>
+<style>
+body {
+font-family: Arial;
+}
+form {
+margin-bottom: 20px;
+}
+</style>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+</head>
+
+<body>
+
+<h1>Todo List</h1>
+
+<form id="add-task-form">
+<input type="text" id="title" placeholder="Title" required />
+<input type="text" id="description" placeholder="Description"/>
+<input type="date" id="due-date"/>
+<button type='submit'>Add Task</button>
+</form>
+
+<ul id='task-list'>
+{% for task in tasks %}
+<li>{{ task.title }} - {{ task.description }} (Due: {{ task.due_date }}) <button onclick=deleteTask({{ task.id }})>Delete</button> <button onclick=editTask({{ task.id }})>Edit</button></li>
+{% endfor %}
+</ul>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+
+</body>
+</html>
